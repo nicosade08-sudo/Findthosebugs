@@ -8,10 +8,12 @@ export default function TodoForm({ onAdd }: TodoFormProps) {
   const [text, setText] = useState('')
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault()
-    onAdd(text)
-    setText('')
-  }
+  event.preventDefault()
+  const trimmed = text.trim()
+  if (!trimmed) return
+  onAdd(trimmed)
+  setText('')
+}
 
   return (
     <form onSubmit={handleSubmit}>
